@@ -1286,7 +1286,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &607799367
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3053,7 +3053,7 @@ MonoBehaviour:
   _AttackPower: 2
   _FirePotAccelation: 0
   _ExpScaling: 1
-  _Special: 0.05
+  _Special: 0.02
 --- !u!114 &1765058336
 MonoBehaviour:
   m_ObjectHideFlags: 0

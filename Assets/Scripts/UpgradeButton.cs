@@ -12,6 +12,7 @@ public class UpgradeButton : MonoBehaviour
 {
     public const int MAX_LEVEL = 20;
     public const float FIREPOT_ACCELATION_PERCENT = 0.01f;
+    public const float SPECIAL_APPEARANCE_PERCENT = 0.03f;
 
     [SerializeField] private Image ButtonImage;
     [SerializeField] private TMPro.TextMeshProUGUI Cost;
@@ -61,7 +62,12 @@ public class UpgradeButton : MonoBehaviour
                         break;
 
                     case global::Upgrade.SpecialBrick:
-                        ability.Special += 0.05f;
+                        if (mLevel >= MAX_LEVEL / 2)
+                        {
+                            ability.Special += SPECIAL_APPEARANCE_PERCENT / 2;
+                        }
+                        else 
+                            ability.Special += SPECIAL_APPEARANCE_PERCENT;
                         break;
                 }
                 UpgradeCost += IncreaseCost;
