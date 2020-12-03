@@ -7,28 +7,17 @@ public class BrickAbility : Singleton<BrickAbility>
     [SerializeField] private float _AttackPower;
     public float AttackPower 
     {
-        get
-        {
-            return _AttackPower;
-        }
+        get => _AttackPower;
         set => _AttackPower = value;
     }
 
-    [Header("Critcal")]
-
-    [Range(0f,1f)]
-    [SerializeField] private float _CritcalProbability;
-    [SerializeField] private float _CritcalScaling;
-    public float CritcalProbability 
-    { 
-        get => _CritcalProbability; 
-        set => _CritcalProbability = value; 
-    }
-    public float CritcalScaling
+    [SerializeField] private float _FirePotAccelation;
+    public float FirePotAccelation
     {
-        get => _CritcalScaling;
-        set => _CritcalScaling = value;
+        get => _FirePotAccelation;
+        set => _FirePotAccelation = value;
     }
+
     [Header("Exp")]
     [SerializeField] private float _ExpScaling;
     public float ExpScaling
@@ -36,15 +25,12 @@ public class BrickAbility : Singleton<BrickAbility>
         get => _ExpScaling;
         set => _ExpScaling = value;
     }
+    
     [Range(0f, 1f)]
     [SerializeField] private float _Special;
     public float Special
     {
         get => _Special;
         set => _Special = value;
-    }
-    public float PureAttackPower()
-    {
-        return _AttackPower;
     }
 }
