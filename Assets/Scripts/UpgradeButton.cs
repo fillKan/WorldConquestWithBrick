@@ -10,6 +10,7 @@ public enum Upgrade
 
 public class UpgradeButton : MonoBehaviour
 {
+    public const int MAX_LEVEL = 20;
     public const float FIREPOT_ACCELATION_PERCENT = 0.01f;
 
     [SerializeField] private Image ButtonImage;
@@ -23,11 +24,13 @@ public class UpgradeButton : MonoBehaviour
     [SerializeField] private int IncreaseCost;
     [SerializeField] private int  UpgradeCost;
 
-    private int mLevel = 1;
+    private int mLevel = 0;
 
     private void Update()
     {
-        if (XPManager.Instance.CanSubtractXP(UpgradeCost))
+        // 업그레이드 가능, 혹은 최대 레벨일 때
+        if (mLevel >= MAX_LEVEL || 
+            XPManager.Instance.CanSubtractXP(UpgradeCost))
         {
             ButtonImage.color = Color.white;
         }
@@ -39,30 +42,44 @@ public class UpgradeButton : MonoBehaviour
 
     public void Upgrade()
     {
-        var ability = BrickAbility.Instance;
-
-        if (XPManager.Instance.SubtractXP(UpgradeCost))
+        if (mLevel < MAX_LEVEL)
         {
-            SoundManager.Instance.PlaySound(Sounds.LevelUp);
+            var ability = BrickAbility.Instance;
 
-            switch (_Upgrade)
+            if (XPManager.Instance.SubtractXP(UpgradeCost))
             {
-                case global::Upgrade.BrickPower:
-                    ability.AttackPower *= 1.1f;
-                    break;
+                SoundManager.Instance.PlaySound(Sounds.LevelUp);
 
-                case global::Upgrade.FirePotSpeed:
-                    ability.FirePotAccelation += FIREPOT_ACCELATION_PERCENT;
-                    break;
+                switch (_Upgrade)
+                {
+                    case global::Upgrade.BrickPower:
+                        ability.AttackPower *= 1.1f;
+                        break;
 
-                case global::Upgrade.SpecialBrick:
-                    ability.Special += 0.05f;
-                    break;
+                    case global::Upgrade.FirePotSpeed:
+                        ability.FirePotAccelation += FIREPOT_ACCELATION_PERCENT;
+                        break;
+
+                    case global::Upgrade.SpecialBrick:
+                        ability.Special += 0.05f;
+                        break;
+                }
+                UpgradeCost += IncreaseCost;
+                mLevel++;
+
+                if (mLevel >= MAX_LEVEL)
+                {
+                    Cost.text = $"BRICK";
+
+                    Level.text = $"Lv.MAX";
+                    Level.color = new Color(0.33f, 0.9f, 1f);
+                }
+                else
+                {
+                    Cost.text = $"{UpgradeCost}XP";
+                    Level.text = $"Lv.{mLevel}";
+                }
             }
-             UpgradeCost += IncreaseCost;
-
-             Cost.text = $"{UpgradeCost}XP";
-            Level.text = $"Lv.{++mLevel}";
         }
     }
 }

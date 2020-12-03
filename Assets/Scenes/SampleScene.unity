@@ -1286,7 +1286,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &607799367
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3051,8 +3051,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _AttackPower: 2
-  _CritcalProbability: 0.05
-  _CritcalScaling: 1.5
+  _FirePotAccelation: 0
   _ExpScaling: 1
   _Special: 0.05
 --- !u!114 &1765058336
@@ -4227,6 +4226,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 607799367}
     m_Modifications:
+    - target: {fileID: 7405976528139823113, guid: 15cc9642bc83be441a170b13965293f7,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7405976528139823113, guid: 15cc9642bc83be441a170b13965293f7,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7405976528139823113, guid: 15cc9642bc83be441a170b13965293f7,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7405976528139823115, guid: 15cc9642bc83be441a170b13965293f7,
         type: 3}
       propertyPath: m_LocalPosition.x
