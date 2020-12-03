@@ -3,22 +3,35 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum Upgrade
+{
+    BrickPower, FirePotSpeed, SpecialBrick
+}
+
 public class UpgradeButton : MonoBehaviour
 {
+    public const int MAX_LEVEL = 20;
+    public const float FIREPOT_ACCELATION_PERCENT = 0.01f;
+    public const float SPECIAL_APPEARANCE_PERCENT = 0.03f;
+
     [SerializeField] private Image ButtonImage;
     [SerializeField] private TMPro.TextMeshProUGUI Cost;
     [SerializeField] private TMPro.TextMeshProUGUI Level;
 
-    [SerializeField] private float IncreaseIncreaseScale;
+    [Header("Upgrade Target")]
+    [SerializeField] private Upgrade _Upgrade;
 
+    [Header("Cost Info")]
     [SerializeField] private int IncreaseCost;
     [SerializeField] private int  UpgradeCost;
 
-    private int mLevel = 1;
+    private int mLevel = 0;
 
     private void Update()
     {
-        if (XPManager.Instance.CanSubtractXP(UpgradeCost))
+        // 업그레이드 가능, 혹은 최대 레벨일 때
+        if (mLevel >= MAX_LEVEL || 
+            XPManager.Instance.CanSubtractXP(UpgradeCost))
         {
             ButtonImage.color = Color.white;
         }
@@ -30,31 +43,49 @@ public class UpgradeButton : MonoBehaviour
 
     public void Upgrade()
     {
-        var ability = BrickAbility.Instance;
-
-        if (XPManager.Instance.SubtractXP(UpgradeCost))
+        if (mLevel < MAX_LEVEL)
         {
-            SoundManager.Instance.PlaySound(Sounds.LevelUp);
+            var ability = BrickAbility.Instance;
 
-            // 공격력 10%증가
-            ability.AttackPower *= 1.1f;
+            if (XPManager.Instance.SubtractXP(UpgradeCost))
+            {
+                SoundManager.Instance.PlaySound(Sounds.LevelUp);
 
-            // 치명타 확률 2.5%증가
-            ability.CritcalProbability += 0.025f;
+                switch (_Upgrade)
+                {
+                    case global::Upgrade.BrickPower:
+                        ability.AttackPower *= 1.1f;
+                        break;
 
-            // 치명타 피해량 10%증가
-            ability.CritcalScaling += 0.1f;
+                    case global::Upgrade.FirePotSpeed:
+                        ability.FirePotAccelation += FIREPOT_ACCELATION_PERCENT;
+                        break;
 
-            // 특수 벽돌 5%증가
-            ability.Special += 0.05f;
+                    case global::Upgrade.SpecialBrick:
+                        if (mLevel >= MAX_LEVEL / 2)
+                        {
+                            ability.Special += SPECIAL_APPEARANCE_PERCENT / 2;
+                        }
+                        else 
+                            ability.Special += SPECIAL_APPEARANCE_PERCENT;
+                        break;
+                }
+                UpgradeCost += IncreaseCost;
+                mLevel++;
 
-             UpgradeCost += IncreaseCost;
-            IncreaseCost = Mathf.FloorToInt(IncreaseCost * IncreaseIncreaseScale);
-            IncreaseCost -= IncreaseCost % 10;
+                if (mLevel >= MAX_LEVEL)
+                {
+                    Cost.text = $"BRICK";
 
-            Cost.text = $"{UpgradeCost}XP";
-
-            Level.text = $"Lv.{++mLevel}";
+                    Level.text = $"Lv.MAX";
+                    Level.color = new Color(0.33f, 0.9f, 1f);
+                }
+                else
+                {
+                    Cost.text = $"{UpgradeCost}XP";
+                    Level.text = $"Lv.{mLevel}";
+                }
+            }
         }
     }
 }
