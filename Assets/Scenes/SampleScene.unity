@@ -1719,7 +1719,7 @@ MonoBehaviour:
   ButtonImage: {fileID: 815725331}
   Cost: {fileID: 307227345}
   Level: {fileID: 827365500}
-  IncreaseIncreaseScale: 1.2
+  _Upgrade: 0
   IncreaseCost: 200
   UpgradeCost: 210
 --- !u!114 &815725330
@@ -2227,6 +2227,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 607799367}
     m_Modifications:
+    - target: {fileID: 3103662114364722018, guid: 15cc9642bc83be441a170b13965293f7,
+        type: 3}
+      propertyPath: _Upgrade
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7405976527042126178, guid: 15cc9642bc83be441a170b13965293f7,
         type: 3}
       propertyPath: m_text
@@ -2372,6 +2377,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 607799367}
     m_Modifications:
+    - target: {fileID: 3103662114364722018, guid: 15cc9642bc83be441a170b13965293f7,
+        type: 3}
+      propertyPath: _Upgrade
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3103662114364722018, guid: 15cc9642bc83be441a170b13965293f7,
+        type: 3}
+      propertyPath: UpgradeCost
+      value: 350
+      objectReference: {fileID: 0}
+    - target: {fileID: 3103662114364722018, guid: 15cc9642bc83be441a170b13965293f7,
+        type: 3}
+      propertyPath: IncreaseCost
+      value: 310
+      objectReference: {fileID: 0}
     - target: {fileID: 7405976527042126178, guid: 15cc9642bc83be441a170b13965293f7,
         type: 3}
       propertyPath: m_text
@@ -2391,6 +2411,13 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 135
+      objectReference: {fileID: 0}
+    - target: {fileID: 7405976527100017098, guid: 15cc9642bc83be441a170b13965293f7,
+        type: 3}
+      propertyPath: m_text
+      value: '350XP
+
+'
       objectReference: {fileID: 0}
     - target: {fileID: 7405976528139823115, guid: 15cc9642bc83be441a170b13965293f7,
         type: 3}

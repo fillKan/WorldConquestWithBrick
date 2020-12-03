@@ -3,14 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum Upgrade
+{
+    BrickPower, FirePotSpeed, SpecialBrick
+}
+
 public class UpgradeButton : MonoBehaviour
 {
     [SerializeField] private Image ButtonImage;
     [SerializeField] private TMPro.TextMeshProUGUI Cost;
     [SerializeField] private TMPro.TextMeshProUGUI Level;
 
-    [SerializeField] private float IncreaseIncreaseScale;
+    [Header("Upgrade Target")]
+    [SerializeField] private Upgrade _Upgrade;
 
+    [Header("Cost Info")]
     [SerializeField] private int IncreaseCost;
     [SerializeField] private int  UpgradeCost;
 
@@ -36,24 +43,23 @@ public class UpgradeButton : MonoBehaviour
         {
             SoundManager.Instance.PlaySound(Sounds.LevelUp);
 
-            // 공격력 10%증가
-            ability.AttackPower *= 1.1f;
+            switch (_Upgrade)
+            {
+                case global::Upgrade.BrickPower:
+                    ability.AttackPower *= 1.1f;
+                    break;
 
-            // 치명타 확률 2.5%증가
-            ability.CritcalProbability += 0.025f;
+                case global::Upgrade.FirePotSpeed:
+                    // To do...
+                    break;
 
-            // 치명타 피해량 10%증가
-            ability.CritcalScaling += 0.1f;
-
-            // 특수 벽돌 5%증가
-            ability.Special += 0.05f;
-
+                case global::Upgrade.SpecialBrick:
+                    ability.Special += 0.05f;
+                    break;
+            }
              UpgradeCost += IncreaseCost;
-            IncreaseCost = Mathf.FloorToInt(IncreaseCost * IncreaseIncreaseScale);
-            IncreaseCost -= IncreaseCost % 10;
 
-            Cost.text = $"{UpgradeCost}XP";
-
+             Cost.text = $"{UpgradeCost}XP";
             Level.text = $"Lv.{++mLevel}";
         }
     }

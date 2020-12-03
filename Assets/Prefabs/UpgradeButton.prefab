@@ -492,6 +492,7 @@ GameObject:
   - component: {fileID: 7405976528139823112}
   - component: {fileID: 7405976528139823113}
   - component: {fileID: 7405976528139823114}
+  - component: {fileID: 3103662114364722018}
   m_Layer: 5
   m_Name: UpgradeButton
   m_TagString: Untagged
@@ -599,4 +600,33 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7405976528139823113}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3103662114364722018}
+        m_MethodName: Upgrade
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &3103662114364722018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7405976528139823116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ce5cf6aeed3c3841bd0f552b2d8771d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ButtonImage: {fileID: 7405976528139823113}
+  Cost: {fileID: 7405976527100017098}
+  Level: {fileID: 7405976527469208034}
+  IncreaseIncreaseScale: 0
+  IncreaseCost: 250
+  UpgradeCost: 210
