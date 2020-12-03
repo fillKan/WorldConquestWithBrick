@@ -26,7 +26,7 @@ public class FirePot : MonoBehaviour
             }
             float WaitBakeTime()
             {
-                return FirePotteryTime + (FirePotteryTime * BrickPool.Instance.BrickCount * 0.1f);
+                return FirePotteryTime - (FirePotteryTime * BrickAbility.Instance.FirePotAccelation);
             }
             for (float i = 0f; i < WaitBakeTime(); i += DeltaTime())
             {

@@ -10,6 +10,8 @@ public enum Upgrade
 
 public class UpgradeButton : MonoBehaviour
 {
+    public const float FIREPOT_ACCELATION_PERCENT = 0.01f;
+
     [SerializeField] private Image ButtonImage;
     [SerializeField] private TMPro.TextMeshProUGUI Cost;
     [SerializeField] private TMPro.TextMeshProUGUI Level;
@@ -50,7 +52,7 @@ public class UpgradeButton : MonoBehaviour
                     break;
 
                 case global::Upgrade.FirePotSpeed:
-                    // To do...
+                    ability.FirePotAccelation += FIREPOT_ACCELATION_PERCENT;
                     break;
 
                 case global::Upgrade.SpecialBrick:
