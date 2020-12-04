@@ -7,28 +7,26 @@ public class BrickUnlockButton : MonoBehaviour
 {
     private readonly Color DisableColor = new Color(0.5f, 0.5f, 0.5f);
 
+    [Header("Unlock Indo")]
     [SerializeField] private int Cost;
     [SerializeField] private Brick TargetBrick;
+    
+    [Header("Text")]
+    [SerializeField] private TMPro.TextMeshProUGUI LockText;
+    [SerializeField] private TMPro.TextMeshProUGUI NameText;
 
+    [Header("Images")]
     [SerializeField] private Image[] ButtonImages;
 
     private bool _IsAlreadyInit = false;
+    private bool _IsUnlock = false;
 
     private void OnEnable()
     {
         if (!_IsAlreadyInit)
         {
-            XPManager.Instance.XPChangeEvent += o =>
-            {
-                if (o >= Cost)
-                {
-                    ColorChange(Color.white);
-                }
-                else
-                {
-                    ColorChange(DisableColor);
-                }
-            };
+            XPManager.Instance.XPChangeEvent += UnlockCheck;
+
             if (XPManager.Instance.CanSubtractXP(Cost))
             {
                 ColorChange(Color.white);
@@ -43,11 +41,34 @@ public class BrickUnlockButton : MonoBehaviour
 
     public void Unlock()
     {
-        if (XPManager.Instance.CanSubtractXP(Cost))
+        if (!_IsUnlock)
         {
-            XPManager.Instance.SubtractXP(Cost);
+            if (XPManager.Instance.CanSubtractXP(Cost))
+            {
+                LockText.text = "해금됨";
 
-            BrickPool.Instance.AddSpecial(TargetBrick);
+                LockText.color = Color.yellow;
+                NameText.color = Color.yellow;
+
+                XPManager.Instance.SubtractXP(Cost);
+                XPManager.Instance.XPChangeEvent -= UnlockCheck;
+
+                BrickPool.Instance.AddSpecial(TargetBrick);
+
+                _IsUnlock = true;
+            }
+        }
+    }
+
+    private void UnlockCheck(int sumCost)
+    {
+        if (sumCost >= Cost)
+        {
+            ColorChange(Color.white);
+        }
+        else
+        {
+            ColorChange(DisableColor);
         }
     }
 

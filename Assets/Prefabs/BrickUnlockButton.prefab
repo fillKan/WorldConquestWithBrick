@@ -550,6 +550,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Cost: 1000
   TargetBrick: {fileID: 0}
+  LockText: {fileID: 5838047948932144410}
+  NameText: {fileID: 912550139502139998}
   ButtonImages:
   - {fileID: 5884332733567818953}
   - {fileID: 7980826081475062050}
