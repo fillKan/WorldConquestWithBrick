@@ -1,10 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class XPManager : Singleton<XPManager>
 {
     [SerializeField] private TMPro.TextMeshProUGUI ExpText;
+
+    public event Action<int> XPChangeEvent;
 
     private int mSumXP;
 
@@ -19,6 +22,8 @@ public class XPManager : Singleton<XPManager>
         mSumXP += exp;
 
         ExpText.text = $"{mSumXP}XP";
+
+        XPChangeEvent?.Invoke(mSumXP);
     }
     public bool SubtractXP(int exp)
     {
@@ -27,6 +32,8 @@ public class XPManager : Singleton<XPManager>
             mSumXP -= exp;
 
             ExpText.text = $"{mSumXP}XP";
+
+            XPChangeEvent?.Invoke(mSumXP);
 
             return true;
         }
