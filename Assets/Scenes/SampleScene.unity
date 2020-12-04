@@ -2220,7 +2220,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -629.9999, y: 246}
+  m_AnchoredPosition: {x: -630, y: 246}
   m_SizeDelta: {x: 1260, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1047621165
@@ -5026,6 +5026,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1045054616}
     m_Modifications:
+    - target: {fileID: 835916126958247163, guid: 76e843f2c39183f4bb42f97c7be4e351,
+        type: 3}
+      propertyPath: TargetBrick
+      value: 
+      objectReference: {fileID: 9189440954569712663, guid: 7bebf1ee1d547264aab280c097aee35e,
+        type: 3}
     - target: {fileID: 5884332733567818932, guid: 76e843f2c39183f4bb42f97c7be4e351,
         type: 3}
       propertyPath: m_Name
