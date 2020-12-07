@@ -12,6 +12,16 @@ public class FirePot : MonoBehaviour
 
     [SerializeField] private Image GaugeImage;
 
+    private Brick _NextBrick;
+
+    public void SetNextBrick(Brick brick)
+    {
+        if (_NextBrick == null)
+        {
+            _NextBrick = brick;
+        }
+    }
+
     private void Start()
     {
         StartCoroutine(FirePotteryRoutine());
@@ -36,19 +46,28 @@ public class FirePot : MonoBehaviour
             }
             Brick brick;
 
-            if (BrickAbility.Instance.Special >= Random.value)
+            if (_NextBrick != null)
             {
-                SoundManager.Instance.PlaySound(Sounds.SummonSpecial);
-                
+                brick = _NextBrick;
+                        _NextBrick = null;
+            }
+            else if (BrickAbility.Instance.Special >= Random.value)
+            {
                 brick = BrickPool.Instance.GetSpecial();
             }
             else
             {
-                SoundManager.Instance.PlaySound(Sounds.SummonBrick);
-
                 brick = BrickPool.Instance.Get();
             }
-
+            if (brick.IsSpecial)
+            {
+                SoundManager.Instance.PlaySound(Sounds.SummonSpecial);
+            }
+            else
+            {
+                SoundManager.Instance.PlaySound(Sounds.SummonBrick);
+            }
+            brick.gameObject.SetActive(true);
             brick.transform.position = transform.TransformPoint(FirePoint);
             brick.transform.rotation = Quaternion.identity;
 

@@ -45,6 +45,9 @@ public class BrickUnlockButton : MonoBehaviour
         {
             if (XPManager.Instance.CanSubtractXP(Cost))
             {
+                TargetBrick = Instantiate(TargetBrick);
+                TargetBrick.gameObject.SetActive(false);
+
                 LockText.text = "해금됨";
 
                 LockText.color = Color.yellow;
@@ -56,6 +59,11 @@ public class BrickUnlockButton : MonoBehaviour
                 BrickPool.Instance.AddSpecial(TargetBrick);
 
                 _IsUnlock = true;
+
+                SoundManager.Instance.PlaySound(Sounds.BrickUnlock);
+
+                var firePot = FindObjectOfType(typeof(FirePot)) as FirePot;
+                    firePot?.SetNextBrick(TargetBrick);
             }
         }
     }
