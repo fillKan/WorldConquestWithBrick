@@ -13,13 +13,16 @@ public class Brick : MonoBehaviour
 
     public readonly Color Critcal = new Color(0.4f, 0.6f, 1f);
 
+    public bool IsSpecial => _IsSpecial;
+
     [Header("Particle Info")]
     [SerializeField] private GameObject Particle;
 
     [Header("Brick Info")]
     [SerializeField] private Rigidbody2D Rigidbody;
     [SerializeField] private int _Damage;
-    [SerializeField] private bool IsSpecial;
+    [SerializeField] private bool _IsSpecial;
+    [SerializeField] private Sounds BreakSound;
 
     private System.Action mDisableAction;
 
@@ -32,14 +35,11 @@ public class Brick : MonoBehaviour
     {
         mDisableAction += () =>
         {
-            if (IsSpecial)
+            if (_IsSpecial)
             {
                 gameObject.SetActive(false);
 
                 Instantiate(Particle, transform.position, Quaternion.identity);
-
-                SoundManager.Instance.PlaySound(Sounds.SpecialBreak);
-
                 MainCamera.Instance.Shake(0.5f, 0.6f, true);
             }
             else
@@ -47,11 +47,9 @@ public class Brick : MonoBehaviour
                 BrickPool.Instance.Add(this);
 
                 ParticlePool.Instance.UsingParticle(transform.position);
-
-                SoundManager.Instance.PlaySound(Sounds.BrickBreak);
-
                 MainCamera.Instance.Shake(0.25f, 0.4f, true);
             }
+            SoundManager.Instance.PlaySound(BreakSound);
         };
     }
 
@@ -76,22 +74,19 @@ public class Brick : MonoBehaviour
 
             int exp = Mathf.FloorToInt(damage * BrickAbility.Instance.ExpScaling);
 
-            if (IsSpecial)
+            if (_IsSpecial)
             {
                 exp *= 3;
             }
             XPManager.Instance.AddXP(exp);
 
-            if (IsSpecial)
+            if (_IsSpecial)
             {
                 damage *= 3;
 
                 gameObject.SetActive(false);
 
                 Instantiate(Particle, transform.position, Quaternion.identity);
-
-                SoundManager.Instance.PlaySound(Sounds.SpecialBreak);
-
                 MainCamera.Instance.Shake(0.5f, 0.6f, true);
 
                 MessagePool.Instance.Using($"+{exp}XP", transform.position, 1.75f);
@@ -101,13 +96,12 @@ public class Brick : MonoBehaviour
                 BrickPool.Instance.Add(this);
 
                 ParticlePool.Instance.UsingParticle(transform.position);
-
-                SoundManager.Instance.PlaySound(Sounds.BrickBreak);
-
                 MainCamera.Instance.Shake(0.25f, 0.4f, true);
 
                 MessagePool.Instance.Using($"+{exp}XP", transform.position, MaxVelocity.magnitude * 0.07f);
             }
+            SoundManager.Instance.PlaySound(BreakSound);
+
             enemy.Damaged(damage);
         }
     }
