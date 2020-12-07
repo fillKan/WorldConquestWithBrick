@@ -147,4 +147,5 @@ MonoBehaviour:
     type: 3}
   Rigidbody: {fileID: 1306972288466185500}
   _Damage: 15
-  IsSpecial: 1
+  _IsSpecial: 1
+  BreakSound: 3

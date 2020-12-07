@@ -146,4 +146,5 @@ MonoBehaviour:
   Particle: {fileID: 403406944883133955, guid: cfe7891a1e626b24b950d2490467752a, type: 3}
   Rigidbody: {fileID: 1306972288466185500}
   _Damage: 15
-  IsSpecial: 1
+  _IsSpecial: 1
+  BreakSound: 1

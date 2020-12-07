@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum Sounds
 {
-    Shoot, SpecialBreak, SummonSpecial, SummonBrick, BrickBreak, LevelUp
+    Shoot, SpecialBreak, SummonSpecial, LEGOBreak, SummonBrick, BrickBreak, LevelUp, BrickUnlock
 }
 
 public class SoundManager : Singleton<SoundManager>
@@ -12,9 +12,11 @@ public class SoundManager : Singleton<SoundManager>
     [SerializeField] private AudioSource ShootSound;
     [SerializeField] private AudioSource SpecialBreakSound;
     [SerializeField] private AudioSource BrickBreakSound;
+    [SerializeField] private AudioSource LEGOBreakSound;
     [SerializeField] private AudioSource SummonSpecialSound;
     [SerializeField] private AudioSource SummonBrickSound;
     [SerializeField] private AudioSource LevelUpSound;
+    [SerializeField] private AudioSource BrickUnlock;
 
     [Space()]
     [SerializeField] private AudioSource PlayLoopSound;
@@ -50,6 +52,14 @@ public class SoundManager : Singleton<SoundManager>
 
             case Sounds.LevelUp:
                 LevelUpSound.Play();
+                break;
+
+            case Sounds.LEGOBreak:
+                LEGOBreakSound.Play();
+                break;
+
+            case Sounds.BrickUnlock:
+                BrickUnlock.Play();
                 break;
 
             default:
