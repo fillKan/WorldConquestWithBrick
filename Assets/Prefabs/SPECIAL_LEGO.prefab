@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1306972288466185501}
   - component: {fileID: 9189440954569712663}
   m_Layer: 0
-  m_Name: Brick
+  m_Name: SPECIAL_LEGO
   m_TagString: Brick
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 1306972288466185488}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.65, y: 0.65, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -73,8 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 7000556423999576630, guid: bfbc8041b6bb11d45a4c6017778ddcfb,
-    type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0ba159de696c9d1419dcc58b4b0f5b2d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -101,7 +100,7 @@ Rigidbody2D:
   m_LinearDrag: 0.6
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: e91aca823ad86f141be0195b401402e8, type: 2}
+  m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -123,7 +122,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.12, y: 5.12}
+    oldSize: {x: 1.74, y: 2.01}
     newSize: {x: 1.77, y: 1.85}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -144,9 +143,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ebe64bedada35147a8f4425a778c2fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Particle: {fileID: 6441366383387625401, guid: eddcb39795383b54dbbcd27ba073ebff,
+  Particle: {fileID: 6441366383387625401, guid: dccb1389106f61e429171d86f32a86d5,
     type: 3}
   Rigidbody: {fileID: 1306972288466185500}
   _Damage: 15
-  IsSpecial: 0
-  BreakSound: 5
+  _IsSpecial: 1
+  BreakSound: 3

@@ -10,9 +10,9 @@ public enum Upgrade
 
 public class UpgradeButton : MonoBehaviour
 {
-    public const int MAX_LEVEL = 20;
-    public const float FIREPOT_ACCELATION_PERCENT = 0.01f;
-    public const float SPECIAL_APPEARANCE_PERCENT = 0.03f;
+    public const int MAX_LEVEL = 8;
+    public const float FIREPOT_ACCELATION_PERCENT = 0.04f;
+    public const float SPECIAL_APPEARANCE_PERCENT = 0.04f;
 
     [SerializeField] private Image ButtonImage;
     [SerializeField] private TMPro.TextMeshProUGUI Cost;
@@ -54,7 +54,7 @@ public class UpgradeButton : MonoBehaviour
                 switch (_Upgrade)
                 {
                     case global::Upgrade.BrickPower:
-                        ability.AttackPower *= 1.1f;
+                        ability.AttackPower *= 1.15f;
                         break;
 
                     case global::Upgrade.FirePotSpeed:

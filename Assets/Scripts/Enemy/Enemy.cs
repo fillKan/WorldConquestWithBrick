@@ -50,6 +50,11 @@ public class Enemy : MonoBehaviour
                 {
                     StopCoroutine(mDamagedMotion); mDamagedMotion = null;
                 }
+                int exp = Mathf.FloorToInt(MaxHealth);
+
+                MessagePool.Instance.Using($"+{exp}XP", new Vector2(1.8f, 0f), 2f);
+                XPManager.Instance.AddXP(exp);
+
                 StartCoroutine(mDeathMotion = DeathMotion(1.5f));
             }
             else if (mDamagedMotion == null)

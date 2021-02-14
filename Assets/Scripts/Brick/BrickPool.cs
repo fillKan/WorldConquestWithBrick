@@ -8,7 +8,7 @@ public class BrickPool : Singleton<BrickPool>
     private Stack<Brick> mBrickPool;
 
     [SerializeField] private Brick OriginBrick;
-    [SerializeField] private Brick[] SpecialBrick;
+    [SerializeField] private List<Brick> SpecialBrick;
 
     [SerializeField] private int HoldingCount;
 
@@ -28,7 +28,11 @@ public class BrickPool : Singleton<BrickPool>
     }
     public Brick GetSpecial()
     {
-        return Instantiate(SpecialBrick[Random.Range(0, SpecialBrick.Length)]);
+        return Instantiate(SpecialBrick[Random.Range(0, SpecialBrick.Count)]);
+    }
+    public void AddSpecial(Brick brick)
+    {
+        SpecialBrick.Add(brick);
     }
     public Brick Get()
     {
